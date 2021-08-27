@@ -7,7 +7,7 @@
 Use the package manager [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) to install @tijme/base64.
 
 ```bash
-pip install foobar
+npm install @tijme/base64
 ```
 
 ## Usage
