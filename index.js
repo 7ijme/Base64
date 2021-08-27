@@ -1,4 +1,4 @@
-const base64Characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".split("");
+const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".split("");
 
 function encode(string) {
 	let binaryString = "";
@@ -13,7 +13,7 @@ function encode(string) {
 	for (const character of binaryString) {
 		currentString += character;
 		if (index % 6 == 0) {
-			const base64Character = base64Characters[parseInt(currentString, 2)];
+			const base64Character = characters[parseInt(currentString, 2)];
 			newString += base64Character;
 			currentString = "";
 		}
@@ -25,7 +25,7 @@ function encode(string) {
 		if (currentString.length == 4) addEquals = "=";
 		if (currentString.length == 2) addEquals = "==";
 		currentString = `${currentString.length - 6 ? "0".repeat(6 - currentString.length) : ""}${currentString}`;
-		const base64Character = base64Characters[parseInt(currentString, 2)];
+		const base64Character = characters[parseInt(currentString, 2)];
 		newString += base64Character + addEquals;
 		currentString = "";
 	}
@@ -35,7 +35,7 @@ function encode(string) {
 function decode(string) {
 	let binaryString = "";
 	for (const character of string) {
-		const base64Binary = base64Characters.indexOf(character).toString(2);
+		const base64Binary = characters.indexOf(character).toString(2);
 		binaryString += `${base64Binary.length < 6 ? "0".repeat(6 - base64Binary.length) : ""}${base64Binary}`;
 	}
 
@@ -58,5 +58,5 @@ function decode(string) {
 module.exports = {
 	encode,
 	decode,
-	base64Characters,
+	base64Characters: characters,
 };
